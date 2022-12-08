@@ -1,0 +1,169 @@
+{% extends 'member/member_navbar.html' %}
+{% load static %}
+{% block title %} Library Information System {% endblock %}
+{% block css %}
+<style>
+  body {
+    background-color: #1f2739;
+  }
+</style>
+{% endblock %}
+{% block body %}
+
+<style>
+    .btn-return{
+        background-color: rgb(22, 172, 192);
+    }
+
+    .btn-cancel{
+        background-color: rgb(255, 51, 0)
+    }
+</style>
+
+<style>
+    h1 {
+      font-size: 3em;
+      font-weight: 300;
+      line-height: 1em;
+      padding: 3rem;
+      text-align: center;
+      color: #4dc3fa;
+    }
+  
+    h3 {
+      font-size: 1em;
+      font-weight: 300;
+      text-align: center;
+      display: block;
+      line-height: 1em;
+      padding-bottom: 2em;
+      color: #fb667a;
+    }
+  
+    .container th h1{
+      font-weight: bold;
+      font-size: 1em;
+      text-align: left;
+      padding: 0;
+      color: #185875;
+    }
+  
+    .container td {
+      font-weight: normal;
+      font-size: 1em;
+      -webkit-box-shadow: 0 2px 2px -2px #0e1119;
+      -moz-box-shadow: 0 2px 2px -2px #0e1119;
+      box-shadow: 0 2px 2px -2px #0e1119;
+    }
+  
+    .container {
+      text-align: left;
+      overflow: hidden;
+      width: 80%;
+      margin: 0 auto;
+      display: table;
+      padding: 3rem 0 8em 0;
+    }
+  
+    .container td,
+    .container th {
+      padding-bottom: 2%;
+      padding-top: 2%;
+      padding-left: 2%;
+    }
+  
+    /* Background-color of the odd rows */
+    .container tr:nth-child(odd) {
+      background-color: #323c50;
+    }
+  
+    /* Background-color of the even rows */
+    .container tr:nth-child(even) {
+      background-color: #2c3446;
+    }
+  
+    .container th {
+      background-color: #1f2739;
+    }
+  
+    .container tr:hover {
+      background-color: #464a52;
+      -webkit-box-shadow: 0 6px 6px -6px #0e1119;
+      -moz-box-shadow: 0 6px 6px -6px #0e1119;
+      box-shadow: 0 6px 6px -6px #0e1119;
+    }
+  
+    .container td:hover {
+      background-color: #8ac8bf;
+      color: #185875;
+      font-weight: bold;
+  
+      box-shadow: #78afa7 -1px 1px, #78afa7 -2px 2px, #78afa7 -3px 3px,
+        #78afa7 -4px 4px, #78afa7 -5px 5px, #78afa7 -6px 6px;
+      transform: translate3d(6px, -6px, 0);
+  
+      transition-delay: 0s;
+      transition-duration: 0.4s;
+      transition-property: all;
+      transition-timing-function: line;
+    }
+  
+    .container td{
+      color: rgb(226, 223, 223);
+    }
+    
+    .page-title{
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    h4{
+      color: yellow;
+    }
+
+    @media (max-width: 800px) {
+      .container td:nth-child(4),
+      .container th:nth-child(4) {
+        display: none;
+      }
+    }
+  </style>
+
+{% if issue_history|length > 0 %}
+    <div class="container mt-4">
+        <h1 class="text-center page-title"><strong>Your Issue History</strong></h1>
+        <table class="table table-hover" id="example">
+            <thead>
+                <tr>
+                    <th><h1>Sr.No</h1></th>
+                    <th><h1>ISBN</h1></th>
+                    <th><h1>Title</h1></th>
+                    <th><h1>Author(s)</h1></th>
+                    <th><h1>Issue Date</h1></th>
+                    <th><h1>Return Date</h1></th>
+                    <th><h1>Penalty</h1></th> 
+                </tr>
+            </thead>
+            <tbody>
+                {% for issue_instance in issue_history %}
+                <tr>
+                    <td>{{forloop.counter}}.</td>
+                    <td>{{issue_instance.book.isbn}}</td>
+                    <td>{{issue_instance.book.title}}</td>
+                    <td>{{issue_instance.book.author}}</td>
+                    <td>{{issue_instance.issue_date}}</td>
+                    <td>{{issue_instance.return_date}}</td>
+                    <td>&#8377 {{issue_instance.penalty}}</td>                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    <div class="container mt-4">
+        <h1 class="text-center"><u>Your Issue History</u></h1>
+        <br>
+        <h4 class="text-center">You do not have any books issued in the past.</h4>
+    </div>
+{% endif%}
+ 
+{% endblock %}

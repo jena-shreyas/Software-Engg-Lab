@@ -1,0 +1,77 @@
+{% extends 'staff/clerk_navbar.html' %}
+{% load static %}
+{% block title %} Library Information System {% endblock %}
+{% block css %}
+<style>
+    body {
+      background-color: #1f2739;
+    }
+  </style>
+{% endblock %}
+{% block body %}
+<style>
+    h1{
+        color: white;
+    }
+    .row > div > label > i {
+        color: white;
+    }
+
+    .btn-register{
+        background-color: rgb(22, 172, 192);
+        color: white;
+        padding: 0.5rem;
+        margin: 5rem 44% !important;
+        width: 10rem;
+    }
+</style>
+<div class="container">
+    <br>
+    <h1 class="text-center"><strong>Add Book</strong></h1><br>
+    <form method="POST"> {% csrf_token %}
+    <div class="row mt-4">
+        <div class="form-group col-md-12">
+            <label><i style="font-weight: bold;">Book Title</i></label>
+            <input type="text" class="form-control mt-2" name="title" placeholder="Enter title of the Book" required>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="form-group col-md-12">
+            <label><i style="font-weight: bold;">Author Name</i></label>
+            <input type="text" class="form-control mt-2" name="author" placeholder="Enter name of the Author" required>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="form-group col-md-12">
+            <label><i style="font-weight: bold;">ISBN Number</i></label>
+            <input type="number" class="form-control mt-2" name="isbn" placeholder="Enter ISBN number of the book" required>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="form-group col-md-12">
+            <label><i style="font-weight: bold;">Rack Number</i></label>
+            <input type="text" class="form-control mt-2" name="rack_number" placeholder="Enter rack number of the book" required>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-outline-primary mt-4 btn-register">Add Book</button>
+</div>
+{% endblock %}
+{% block js %}
+<!-- <script>
+    {% if alert %}
+    alert("Book is added successfully.")
+    document.location = "/view_books"
+    {% endif %}
+</script> -->
+
+<script>
+    {% if alert %}
+    alert("{{alert}}");
+    {% endif %}
+  </script>
+  
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'member/member_navbar.html' %} {% block title %} Profile {% endblock%} {% block css %}
+<style>
+
+    .profile{
+        margin: 2% auto;
+    }
+
+  .row {
+    padding: 1.5%;
+    border-radius: 0.5rem;
+    background: rgb(64, 122, 207);
+  }
+
+  body {
+    background-color: #1f2739;
+  }
+</style>
+{% endblock %} {% block body %}
+{% load static %}
+
+<div class="container profile">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="profile-tab">
+        <div class="tab-pane">
+          <div class="row">
+            <div class="col-md-6">
+              <label>Username:</label>
+            </div>
+            <div class="col-md-6">
+              <p>{{user}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <label>Full Name:</label>
+            </div>
+            <div class="col-md-6">
+              <p>{{user.get_full_name}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              {% if is_faculty == True %}
+              <label>Faculty ID:</label>
+              {% else %}
+              <label>Student Roll Number:</label>
+              {% endif %}
+            </div>
+            <div class="col-md-6">
+              <p>{{user.member.insti_id}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <label>Email Address:</label>
+            </div>
+            <div class="col-md-6">
+              <p>{{user.email}}</p>
+            </div>
+          </div>
+        </div>
+        <!-- <a href="/edit_profile/" style="width: 9rem;" class="btn btn-outline-primary mt-3">Edit Profile</a> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  {% if alert %}
+  alert("{{alert}}");
+  {% endif %}
+</script>
+
+{% endblock %}

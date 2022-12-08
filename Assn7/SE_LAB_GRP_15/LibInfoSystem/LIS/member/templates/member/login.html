@@ -1,0 +1,62 @@
+{% extends 'member/basic.html' %}
+{% load static %}
+{% block title %} Library Information System {% endblock %}
+{% block css %}
+<style>
+    body {
+      background-color: #1f2739;
+    }
+  </style>
+{% endblock %}
+{% block body %}
+
+<style>
+    h1{
+        color: white;
+    }
+    .row > div > label > i {
+        color: white;
+    }
+
+    .btn-register{
+        background-color: rgb(22, 172, 192);
+        color: white;
+        padding: 0.5rem;
+        margin: 5rem 44% !important;
+        width: 10rem;
+    }
+</style>
+<div class="container">
+<br>
+<h1 class="text-center"><strong>Member Login</strong></h1>
+    <form method="POST"> {% csrf_token %}
+
+    <div class="row mt-4">
+        <div class="form-group col-md-12">
+            <label><i style="font-weight: bold;">Username</i></label>
+            <input type="text" class="form-control mt-2" name="username" placeholder="Enter Username" required>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="form-group col-md-12">
+            <label><i style="font-weight: bold;">Password</i></label>
+            <input type="password" class="form-control mt-2" name="password" placeholder="Enter Password" required>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-outline-primary mt-4 btn-register">Login</button>
+</div>
+
+<script>
+    {% if message %}
+        alert("{{ message }}");
+    {% endif %}
+</script>
+
+<script>
+    {% if alert %}
+    alert("{{alert}}");
+    {% endif %}
+  </script>
+  
+{% endblock %}

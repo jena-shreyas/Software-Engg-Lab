@@ -1,0 +1,79 @@
+{% extends 'staff/librarian_navbar.html' %}
+{% load static %}
+{% block title %} Library Information System {% endblock %}
+{% block css %}
+<style>
+    body {
+      background-color: #1f2739;
+    }
+  </style>
+{% endblock %}
+{% block body %}
+
+<style>
+    form> h1{
+        color: white;
+    }
+    .row > div > label > i {
+        color: white;
+    }
+
+    .btn-register{
+        background-color: rgb(22, 172, 192);
+        color: white;
+        padding: 0.5rem;
+        margin: 5rem 43% !important;
+        width: 10rem;
+    }
+</style>
+
+<div class="container">
+    <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
+        <br>
+        <h1 class="text-center"><strong>Add Staff Members</strong></h1>
+
+    <div class="row mt-4">
+        <div class="form-group col-md-6">
+            <label><i style="font-weight: bold;">First Name</i></label>
+            <input type="text" class="form-control mt-2" name="first_name" placeholder="Enter First Name" required>
+        </div>
+        <div class="form-group col-md-6">
+            <label><i style="font-weight: bold;">Last Name</i></label>
+            <input type="text" class="form-control mt-2" name="last_name" placeholder="Enter Last Name" required>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="form-group col-md-6">
+            <label><i style="font-weight: bold;">Email</i></label>
+            <input type="email" class="form-control mt-2" name="email" placeholder="Enter Email" required>
+        </div>
+        <div class="form-group col-md-6">
+            <label><i style="font-weight: bold;">Clerk ID</i></label>
+            <input type="text" class="form-control mt-2" name="staff_type" placeholder="Enter ClerkID" required>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="form-group col-md-6">
+            <label><i style="font-weight: bold;">Password</i></label>
+            <input type="password" class="form-control mt-2" name="password" placeholder="Enter Password" required>
+        </div>
+        <div class="form-group col-md-6">
+            <label><i style="font-weight: bold;">Confirm Password</i></label>
+            <input type="password" class="form-control mt-2" name="confirm_password" placeholder="Confirm Password" required>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-outline-primary mt-4 btn-register">Add Staff</button>
+</div>
+</form>
+
+<script>
+    {% if message %}
+       alert("{{ message }}");
+    {% endif %}
+</script>
+{% endblock %}
+{% block js %}
+{% endblock %}
+
